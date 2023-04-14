@@ -1,0 +1,6 @@
+[gd_resource type="Sky" load_steps=2 format=3 uid="uid://b4shv2747hli5"]
+
+[ext_resource type="Material" uid="uid://dpgxbn58g1u3d" path="res://Background/Ambience/procedural_sky_green_horiz.tres" id="1_b86yu"]
+
+[resource]
+sky_material = ExtResource("1_b86yu")

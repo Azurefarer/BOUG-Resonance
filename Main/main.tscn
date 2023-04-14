@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctp6dhr040lvk"]
+
+[ext_resource type="Script" path="res://Main/main.gd" id="1_12fou"]
+[ext_resource type="PackedScene" uid="uid://ep68v1rv5rsy" path="res://Terrain/map.tscn" id="1_orxmn"]
+[ext_resource type="PackedScene" uid="uid://dvfneg0fc3xho" path="res://Character/character.tscn" id="2_cimt4"]
+[ext_resource type="Script" path="res://Character/character_camera.gd" id="3_6hdmp"]
+[ext_resource type="Script" path="res://Main/swivel.gd" id="3_ia1gl"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_12fou")
+
+[node name="Character" parent="." instance=ExtResource("2_cimt4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6501, 5.313, -28.0309)
+
+[node name="Node3D" type="Node3D" parent="Character"]
+script = ExtResource("3_ia1gl")
+
+[node name="Camera3D" type="Camera3D" parent="Character/Node3D"]
+transform = Transform3D(0.707107, -0.313299, 0.633912, 0, 0.896486, 0.443071, -0.707107, -0.313299, 0.633912, 100, 70, 100)
+projection = 1
+size = 25.0
+script = ExtResource("3_6hdmp")
+
+[node name="Map" parent="." instance=ExtResource("1_orxmn")]

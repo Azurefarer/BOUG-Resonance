@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvfneg0fc3xho"]
+
+[ext_resource type="Texture2D" uid="uid://dt0xslvpefmoi" path="res://Assets/Character/Char3.png" id="1_cm8rj"]
+[ext_resource type="Script" path="res://Character/Character.gd" id="1_vmsf1"]
+[ext_resource type="Script" path="res://Character/character_state_machine.gd" id="3_2v7su"]
+[ext_resource type="Script" path="res://Character/air_state.gd" id="4_77u4l"]
+[ext_resource type="Script" path="res://Character/ground_state.gd" id="5_anoha"]
+[ext_resource type="Script" path="res://Character/landing_state.gd" id="6_vg0t6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x10ph"]
+radius = 0.448054
+height = 2.31245
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_vmsf1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_x10ph")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Model" type="Sprite3D" parent="Pivot"]
+pixel_size = 0.0725
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_cm8rj")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
+script = ExtResource("3_2v7su")
+character = NodePath("..")
+current_state = NodePath("Ground")
+
+[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
+script = ExtResource("4_77u4l")
+ground_state = NodePath("../Ground")
+
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
+script = ExtResource("5_anoha")
+air_state = NodePath("../Air")
+
+[node name="Landing" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("6_vg0t6")
