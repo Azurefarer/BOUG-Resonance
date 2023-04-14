@@ -3,15 +3,16 @@ extends CharacterBody3D
 ## 157 pixels per second^2 ~~ 9.8 meters per second^2
 const GRAVITY = 9.8
 ## 21 pixels per second ~~ 1.3 meters per second ~~ 3 miles per hour
-const WALK_ACC = .25
-const WALK_SPEED = 1.3
+const WALK_ACC = .5
+const WALK_SPEED = 2.6
 ## 85 pixels per second ~~ 5.3 meters per second ~~ 12 miles per hour
-const RUN_ACC = 1.07
-const RUN_SPEED = 5.3
+const RUN_ACC = 2.14
+const RUN_SPEED = 10.6
 
 var ground_pos : Vector3
 var last_pos : Vector3
 var elevation : int
+var isometric_transformation : Transform3D
 
 @onready var state_machine := $CharacterStateMachine as CharacterStateMachine
 @onready var grounded := state_machine._check_if_grounded() as bool
@@ -26,6 +27,9 @@ func _ready():
 	last_pos = position
 	elevation = 0
 	velocity = Vector3.ZERO
+	isometric_transformation = Transform3D()
+	isometric_transformation.basis.x = Vector3(cos(PI/4), 0 , sin(PI/4))
+	isometric_transformation.basis.z = Vector3(-sin(PI/4), 0 , cos(PI/4))
 
 
 func _physics_process(delta : float):
@@ -33,10 +37,16 @@ func _physics_process(delta : float):
 	can_move = state_machine._check_if_can_move()
 	in_bounds = state_machine._check_if_in_bounds()
 	
-	if in_bounds:
-		last_pos = position
+	velocity = velocity * isometric_transformation
 	move_and_slide()
+	velocity = isometric_transformation * velocity
+	
+	move_shadow()
 
+
+func move_shadow() -> void:
+	$Shadow.global_position.y = $ShadowPoint.get_collision_point().y + .1
+#	print($ShadowPoint.get_collision_point().y)
 
 #func get_position() -> Vector3:
 #	return position

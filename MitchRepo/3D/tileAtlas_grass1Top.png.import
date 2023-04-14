@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh8sow6t88qfe"
-path.s3tc="res://.godot/imported/grass1Top.png-1f318d878437b95f0caefb9ab89ceaca.s3tc.ctex"
+uid="uid://dyhyx2j3ikidj"
+path.s3tc="res://.godot/imported/tileAtlas_grass1Top.png-a4e3ba52d8e9701fffcfe7f7792367f0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://MitchRepo/Sprites/grass1Top.png"
-dest_files=["res://.godot/imported/grass1Top.png-1f318d878437b95f0caefb9ab89ceaca.s3tc.ctex"]
+source_file="res://MitchRepo/3D/tileAtlas_grass1Top.png"
+dest_files=["res://.godot/imported/tileAtlas_grass1Top.png-a4e3ba52d8e9701fffcfe7f7792367f0.s3tc.ctex"]
 
 [params]
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvfneg0fc3xho"]
+[gd_scene load_steps=10 format=3 uid="uid://dvfneg0fc3xho"]
 
 [ext_resource type="Texture2D" uid="uid://dt0xslvpefmoi" path="res://Assets/Character/Char3.png" id="1_cm8rj"]
 [ext_resource type="Script" path="res://Character/Character.gd" id="1_vmsf1"]
+[ext_resource type="Texture2D" uid="uid://b3010s50dn47u" path="res://icon.svg" id="2_mt10p"]
 [ext_resource type="Script" path="res://Character/character_state_machine.gd" id="3_2v7su"]
+[ext_resource type="Script" path="res://Character/shadow.gd" id="3_doilj"]
 [ext_resource type="Script" path="res://Character/air_state.gd" id="4_77u4l"]
 [ext_resource type="Script" path="res://Character/ground_state.gd" id="5_anoha"]
 [ext_resource type="Script" path="res://Character/landing_state.gd" id="6_vg0t6"]
@@ -14,8 +16,17 @@ height = 2.31245
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_vmsf1")
 
+[node name="Shadow" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+texture = ExtResource("2_mt10p")
+script = ExtResource("3_doilj")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_x10ph")
+
+[node name="ShadowPoint" type="RayCast3D" parent="."]
+exclude_parent = false
+target_position = Vector3(0, -100, 0)
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -33,6 +44,7 @@ current_state = NodePath("Ground")
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("4_77u4l")
 ground_state = NodePath("../Ground")
+grounded = false
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
 script = ExtResource("5_anoha")

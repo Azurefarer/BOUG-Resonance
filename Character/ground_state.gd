@@ -2,13 +2,13 @@ extends State
 
 class_name GroundState
 
-@export var jump_velocity := -150 as float
+@export var jump_velocity := 10 as float
 @export var air_state : State
 
 # is grounded
 
 func on_enter():
-	character.velocity.y = 0
+	pass
 
 
 func state_process(delta : float):
@@ -22,47 +22,10 @@ func state_process(delta : float):
 	if Input.is_action_just_pressed("jump"):
 		jump()
 		return
-#	if !in_bounds:
-#		character.position = last_position
-#		character.velocity = Vector2.ZERO
-#
-#		return
-		
-#	if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
-#		velocity[0] = 0
-#		character.velocity.x = velocity [0]
-#
-#	if Input.is_action_just_released("move_down") or Input.is_action_just_released("move_up"):
-#		velocity[1] = 0
-#		character.velocity.y = velocity[1]
-#
-#
-#
-#	var input_direction : Vector2 = Input.get_vector(
-#			"move_left", "move_right", "move_up", "move_down"
-#		)
-#	velocity += Vector2(
-#			input_direction[0] * 2 * WALK_ACC,
-#			input_direction[1] * WALK_ACC
-#		)
-#	velocity = velocity.clamp(
-#			Vector2(-2 * RUN_SPEED, -RUN_SPEED),
-#			Vector2(2 * RUN_SPEED, RUN_SPEED)
-#		)
-#
-#	if Input.is_action_pressed("walk"):
-#		velocity += Vector2(
-#				input_direction[0] * 2 * WALK_ACC, 
-#				input_direction[1] * WALK_ACC
-#			)
-#		velocity = velocity.clamp(
-#				Vector2(-2 * WALK_SPEED, -WALK_SPEED),
-#				Vector2(2 * WALK_SPEED, WALK_SPEED)
-#			)
-#
-#	character.velocity = velocity
-
-
+	
+	if !character.is_on_floor():
+		next_state = air_state
+	
 	if Input.is_action_just_released("left") or Input.is_action_just_released("right"):
 		velocity[0] = 0
 		
@@ -76,13 +39,13 @@ func state_process(delta : float):
 		$"../../Pivot".look_at(last_position + input_direction, Vector3.UP)
 	
 	velocity += Vector3(
-			input_direction[0] * WALK_ACC,
+			input_direction[0] * RUN_ACC,
 			0,
-			input_direction[2] * WALK_ACC
+			input_direction[2] * RUN_ACC
 		)
 	velocity = velocity.clamp(
-			Vector3(-RUN_SPEED, 0, -RUN_SPEED),
-			Vector3(RUN_SPEED, 0, RUN_SPEED)
+			Vector3(-RUN_SPEED, -100, -RUN_SPEED),
+			Vector3(RUN_SPEED, 100, RUN_SPEED)
 		)
 		
 	if Input.is_action_pressed("walk"):
@@ -92,8 +55,8 @@ func state_process(delta : float):
 				input_direction[2] * WALK_ACC
 			)
 		velocity = velocity.clamp(
-				Vector3(-WALK_SPEED, 0, -WALK_SPEED),
-				Vector3(WALK_SPEED, 0, WALK_SPEED)
+				Vector3(-WALK_SPEED, -100, -WALK_SPEED),
+				Vector3(WALK_SPEED, 100, WALK_SPEED)
 			)
 			
 	character.velocity = velocity
@@ -119,6 +82,7 @@ func state_input(event : InputEvent):
 func jump():
 	character.velocity.y += jump_velocity
 	next_state = air_state
+	print("works")
 	
 func on_exit():
 	next_state = null
