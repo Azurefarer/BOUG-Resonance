@@ -8,7 +8,6 @@ class_name CharacterStateMachine
 var states : Array[State]
 
 func _ready():
-	print(str(character))
 	for child in get_children():
 		if child is State:
 			states.append(child)

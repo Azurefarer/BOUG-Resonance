@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvfneg0fc3xho"]
+[gd_scene load_steps=12 format=3 uid="uid://d0uveaqnegorv"]
 
 [ext_resource type="Texture2D" uid="uid://dt0xslvpefmoi" path="res://Assets/Character/Char3.png" id="1_cm8rj"]
 [ext_resource type="Script" path="res://Character/Character.gd" id="1_vmsf1"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Character/air_state.gd" id="4_77u4l"]
 [ext_resource type="Script" path="res://Character/ground_state.gd" id="5_anoha"]
 [ext_resource type="Script" path="res://Character/landing_state.gd" id="6_vg0t6"]
+[ext_resource type="Script" path="res://Character/wave_like.gd" id="9_g3ep8"]
+[ext_resource type="Script" path="res://Character/debug_label.gd" id="10_yo5ku"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x10ph"]
 radius = 0.448054
@@ -52,3 +54,11 @@ air_state = NodePath("../Air")
 
 [node name="Landing" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("6_vg0t6")
+
+[node name="WaveLike" type="Node" parent="."]
+script = ExtResource("9_g3ep8")
+
+[node name="DeBugLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("10_yo5ku")

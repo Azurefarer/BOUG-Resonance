@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhrctv2u1mopj"]
 
-[ext_resource type="Script" path="res://scripts/node_test.gd" id="1_6n71d"]
-[ext_resource type="Script" path="res://scripts/node_2d _test.gd" id="2_tiw21"]
-[ext_resource type="Script" path="res://scripts/control_test.gd" id="3_7xtu3"]
+[ext_resource type="Script" path="res://DebugTest/node_test.gd" id="1_wr7gi"]
+[ext_resource type="Script" path="res://DebugTest/node_2d _test.gd" id="2_puf5d"]
+[ext_resource type="Script" path="res://DebugTest/control_test.gd" id="3_obfvv"]
 
 [node name="Node" type="Node"]
-script = ExtResource("1_6n71d")
+script = ExtResource("1_wr7gi")
 
 [node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("2_tiw21")
+script = ExtResource("2_puf5d")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_7xtu3")
+script = ExtResource("3_obfvv")

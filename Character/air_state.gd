@@ -88,8 +88,6 @@ func input_dir() -> Vector3:
 	
 func land():
 	next_state = ground_state
-	
-
 
 
 #func _on_terrain_detector_body_exited(body: Node2D) -> void:

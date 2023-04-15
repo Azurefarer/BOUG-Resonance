@@ -1,18 +1,10 @@
 @tool
 extends Node
 
-# safe typing
-var a := Vector2(3, 4)
-
-var b : Vector2
-
-var below_os : SceneTree
-var c : int
-
-func _ready():
-	c = 33 >> 1
-	print(c)
+@onready var oscillator := Oscillator.new() as Oscillator
 
 
-func _process(delta):
-	pass
+func _ready() -> void:
+	oscillator.n_freq = 5
+	print(oscillator.n_freq)
+

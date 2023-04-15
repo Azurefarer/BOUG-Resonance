@@ -2,7 +2,7 @@ extends State
 
 class_name GroundState
 
-@export var jump_velocity := 10 as float
+@export var jump_velocity := 15 as float
 @export var air_state : State
 
 # is grounded
