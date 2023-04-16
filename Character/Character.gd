@@ -38,6 +38,7 @@ func _physics_process(delta : float):
 	velocity = velocity * cam_rot_trans
 	move_and_slide()
 	update_anim()
+	point_stair_sensor()
 	velocity = iso_trans * velocity
 	velocity = cam_rot_trans * velocity
 
@@ -57,6 +58,15 @@ func update_anim() -> void:
 func update_facing_direction() -> void:
 	## Do not have sprites to implement yet
 	pass
+	
+	
+func point_stair_sensor() -> void:
+	var target_pos = velocity.normalized()
+	$Pivot/stairsense.target_position = target_pos * 2
+	
+	###
+	# Signals
+	###
 
 
 func _on_node_3d_cam_swivel(direction) -> void:
@@ -64,3 +74,12 @@ func _on_node_3d_cam_swivel(direction) -> void:
 	cam_rot_trans.basis.x = Vector3(cos(direction), 0 , sin(direction))
 	cam_rot_trans.basis.z = Vector3(-sin(direction), 0 , cos(direction))
 
+
+
+func _on_stairsense_colliding(point) -> void:
+	pass
+	
+	
+	
+	
+	

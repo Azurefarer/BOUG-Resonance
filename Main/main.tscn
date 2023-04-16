@@ -10,13 +10,13 @@
 script = ExtResource("1_12fou")
 
 [node name="Character" parent="." instance=ExtResource("2_cimt4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6501, 19.0913, -28.0309)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6501, 17.6941, -8.85945)
 
 [node name="CamSwivel" type="Node3D" parent="Character"]
 script = ExtResource("3_8xqaa")
 
 [node name="Camera3D" type="Camera3D" parent="Character/CamSwivel"]
-transform = Transform3D(0.707107, -0.313299, 0.633912, 0, 0.896486, 0.443071, -0.707107, -0.313299, 0.633912, 100, 70, 100)
+transform = Transform3D(0.707107, -0.313299, 0.633912, 0, 0.896486, 0.443071, -0.707107, -0.313299, 0.633912, 10, 7, 10)
 size = 25.0
 script = ExtResource("3_6hdmp")
 
