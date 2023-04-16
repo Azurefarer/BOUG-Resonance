@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cd4isux7nkhhi"]
+[gd_scene load_steps=30 format=3 uid="uid://cd4isux7nkhhi"]
 
 [ext_resource type="Script" path="res://Character/Character.gd" id="1_ls0uu"]
 [ext_resource type="Texture2D" uid="uid://tj6oholvq2k4" path="res://MitchRepo/Sprites/shadow1.png" id="2_jgbhu"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Character/landing_state.gd" id="8_7bepp"]
 [ext_resource type="Script" path="res://Character/wave_like.gd" id="9_27vdw"]
 [ext_resource type="Script" path="res://Character/debug_label.gd" id="10_0t7pn"]
+[ext_resource type="Script" path="res://MitchRepo/SpriteDirection.gd" id="11_hygo0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x10ph"]
 radius = 0.422798
@@ -71,7 +72,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_ye8x2"]
 resource_name = "idle"
-length = 0.7
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -242,3 +243,6 @@ tree_root = SubResource("AnimationNodeStateMachine_jqj83")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2y7e1")
 parameters/Move/blend_position = Vector2(-0.000526011, 0.0101011)
+
+[node name="SpriteDirection" type="Node3D" parent="."]
+script = ExtResource("11_hygo0")

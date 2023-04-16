@@ -15,9 +15,9 @@ func _process(delta: float) -> void:
 func _input(event : InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_action_pressed("camL"):
-			swivel(-PI/6)
+			swivel(-PI/4)
 		if event.is_action_pressed("camR"):
-			swivel(PI/6)
+			swivel(PI/4)
 	
 	
 func swivel(direction : float) -> void:

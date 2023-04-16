@@ -63,4 +63,3 @@ func _on_node_3d_cam_swivel(direction) -> void:
 	cam_rot_trans = Transform3D()
 	cam_rot_trans.basis.x = Vector3(cos(direction), 0 , sin(direction))
 	cam_rot_trans.basis.z = Vector3(-sin(direction), 0 , cos(direction))
-
