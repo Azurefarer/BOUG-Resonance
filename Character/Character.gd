@@ -9,9 +9,6 @@ const WALK_SPEED = 2.6
 const RUN_ACC = 2.14
 const RUN_SPEED = 10.6
 
-var ground_pos : Vector3
-var last_pos : Vector3
-var elevation : int
 var iso_trans : Transform3D
 var cam_rot_trans : Transform3D
 
@@ -19,14 +16,16 @@ var cam_rot_trans : Transform3D
 @onready var grounded := state_machine._check_if_grounded() as bool
 @onready var can_move := state_machine._check_if_can_move() as bool
 @onready var in_bounds := state_machine._check_if_in_bounds() as bool
+@onready var boug := $Pivot/Model as Sprite2D
+@onready var animation_tree := $AnimationTree as AnimationTree
 
 
 ##################
 
 
 func _ready():
-	last_pos = position
-	elevation = 0
+	animation_tree.active = true
+	
 	velocity = Vector3.ZERO
 	iso_trans = Transform3D()
 	iso_trans.basis.x = Vector3(cos(PI/4), 0 , sin(PI/4))
@@ -34,21 +33,30 @@ func _ready():
 	
 
 func _physics_process(delta : float):
-	grounded = state_machine._check_if_grounded()
-	can_move = state_machine._check_if_can_move()
-	in_bounds = state_machine._check_if_in_bounds()
-	
+
 	velocity = velocity * iso_trans
 	velocity = velocity * cam_rot_trans
 	move_and_slide()
+	update_anim()
 	velocity = iso_trans * velocity
 	velocity = cam_rot_trans * velocity
-	
+
 	move_shadow()
 
 
 func move_shadow() -> void:
 	$Shadow.global_position.y = $ShadowPoint.get_collision_point().y + .1
+	
+	
+func update_anim() -> void:
+	var blend_pos = Vector2(velocity.x, velocity.z)
+	animation_tree.set("parameters/Move/blend_position", blend_pos)
+	## Need more sprites
+	
+
+func update_facing_direction() -> void:
+	## Do not have sprites to implement yet
+	pass
 
 
 func _on_node_3d_cam_swivel(direction) -> void:

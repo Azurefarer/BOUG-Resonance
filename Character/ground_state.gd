@@ -17,7 +17,7 @@ func state_process(delta : float):
 	var RUN_ACC := character.RUN_ACC as float
 	var WALK_SPEED := character.WALK_SPEED as float
 	var WALK_ACC := character.WALK_ACC as float
-	var last_position := character.last_pos as Vector3
+	var pos := character.position as Vector3
 		
 	if Input.is_action_just_pressed("jump"):
 		jump()
@@ -36,7 +36,7 @@ func state_process(delta : float):
 	
 	if input_direction != Vector3.ZERO:
 		input_direction = input_direction.normalized()
-		$"../../Pivot".look_at(last_position + input_direction, Vector3.UP)
+		$"../../Pivot".look_at(pos + input_direction, Vector3.UP)
 	
 	velocity += Vector3(
 			input_direction[0] * RUN_ACC,

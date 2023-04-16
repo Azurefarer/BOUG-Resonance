@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 class_name Oscillator
@@ -14,4 +15,8 @@ class_name Oscillator
 
 ## damping
 @export var b : float
+
+
+func _ready() -> void:
+	pass
 
