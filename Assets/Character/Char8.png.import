@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://c1fi8mhng8dk4"
-=======
-uid="uid://xx4or3gmiphn"
->>>>>>> 22630e4592da9822266310c18435fc29bba2241b
-path="res://.godot/imported/bougSheet.png-e526dcccd1d273c6ce98da5338b8c2c1.ctex"
+uid="uid://bpcqp3ry7652c"
+path="res://.godot/imported/Char8.png-60802b53bbfa59270ffc9edb3b8c8900.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MitchRepo/Sprites/Boug/bougSheet.png"
-dest_files=["res://.godot/imported/bougSheet.png-e526dcccd1d273c6ce98da5338b8c2c1.ctex"]
+source_file="res://Assets/Character/Char8.png"
+dest_files=["res://.godot/imported/Char8.png-60802b53bbfa59270ffc9edb3b8c8900.ctex"]
 
 [params]
 
