@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://cd4isux7nkhhi"]
+[gd_scene load_steps=31 format=3 uid="uid://cd4isux7nkhhi"]
 
 [ext_resource type="Script" path="res://Character/Character.gd" id="1_ls0uu"]
 [ext_resource type="Texture2D" uid="uid://tj6oholvq2k4" path="res://MitchRepo/Sprites/shadow1.png" id="2_jgbhu"]
 [ext_resource type="Script" path="res://Character/shadow.gd" id="3_6cb8j"]
 [ext_resource type="Texture2D" uid="uid://cs2exyaknmywc" path="res://Assets/Character/boug.png" id="4_b3aup"]
+[ext_resource type="Script" path="res://Character/stairsense.gd" id="5_14asb"]
 [ext_resource type="Script" path="res://Character/character_state_machine.gd" id="5_owmno"]
 [ext_resource type="Script" path="res://Character/air_state.gd" id="6_l3v4w"]
 [ext_resource type="Script" path="res://Character/ground_state.gd" id="7_unw3q"]
@@ -205,6 +206,12 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("4_b3aup")
 hframes = 8
+
+[node name="stairsense" type="RayCast3D" parent="Pivot/Model"]
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(0.866667, 0.843137, 0.835294, 1)
+debug_shape_thickness = 5
+script = ExtResource("5_14asb")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("5_owmno")
