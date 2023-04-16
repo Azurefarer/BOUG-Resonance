@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0uveaqnegorv"]
+[gd_scene load_steps=30 format=3 uid="uid://d0uveaqnegorv"]
 
 [ext_resource type="Script" path="res://Character/Character.gd" id="1_vmsf1"]
 [ext_resource type="Texture2D" uid="uid://tj6oholvq2k4" path="res://MitchRepo/Sprites/shadow1.png" id="2_e0tu7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Character/shadow.gd" id="3_doilj"]
 [ext_resource type="Script" path="res://Character/air_state.gd" id="4_77u4l"]
 [ext_resource type="Texture2D" uid="uid://cs2exyaknmywc" path="res://Assets/Character/boug.png" id="4_pmmb1"]
+[ext_resource type="Script" path="res://Character/stairsense.gd" id="5_5yth7"]
 [ext_resource type="Script" path="res://Character/ground_state.gd" id="5_anoha"]
 [ext_resource type="Script" path="res://Character/landing_state.gd" id="6_vg0t6"]
 [ext_resource type="Script" path="res://Character/wave_like.gd" id="9_g3ep8"]
@@ -172,7 +173,7 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_resq4")
 states/Move/position = Vector2(527, 100)
 states/Start/position = Vector2(145, 100)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_11xwm")]
-graph_offset = Vector2(-196, -126)
+graph_offset = Vector2(-205, -22)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2y7e1"]
 
@@ -204,6 +205,12 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("4_pmmb1")
 hframes = 8
+
+[node name="stairsense" type="RayCast3D" parent="Pivot"]
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(0.866667, 0.843137, 0.835294, 1)
+debug_shape_thickness = 5
+script = ExtResource("5_5yth7")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("3_2v7su")
@@ -242,3 +249,5 @@ tree_root = SubResource("AnimationNodeStateMachine_jqj83")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2y7e1")
 parameters/Move/blend_position = Vector2(-0.000526011, 0.0101011)
+
+[connection signal="colliding" from="Pivot/stairsense" to="." method="_on_stairsense_colliding"]
