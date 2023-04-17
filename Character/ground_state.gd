@@ -10,7 +10,6 @@ class_name GroundState
 func on_enter():
 	pass
 
-
 func state_process(delta : float):
 	var velocity := character.velocity as Vector3
 	var RUN_SPEED := character.RUN_SPEED as float
