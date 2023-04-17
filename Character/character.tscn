@@ -197,6 +197,14 @@ shape = SubResource("CapsuleShape3D_x10ph")
 exclude_parent = false
 target_position = Vector3(0, -100, 0)
 
+[node name="stairsense" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.586307, 0)
+enabled = false
+target_position = Vector3(0, 0, 0)
+debug_shape_custom_color = Color(0.866667, 0.843137, 0.835294, 1)
+debug_shape_thickness = 5
+script = ExtResource("5_5yth7")
+
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Model" type="Sprite3D" parent="Pivot"]
@@ -205,12 +213,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("4_pmmb1")
 hframes = 8
-
-[node name="stairsense" type="RayCast3D" parent="Pivot"]
-target_position = Vector3(0, 0, 1)
-debug_shape_custom_color = Color(0.866667, 0.843137, 0.835294, 1)
-debug_shape_thickness = 5
-script = ExtResource("5_5yth7")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("3_2v7su")
@@ -250,4 +252,4 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2y7e1")
 parameters/Move/blend_position = Vector2(-0.000526011, 0.0101011)
 
-[connection signal="colliding" from="Pivot/stairsense" to="." method="_on_stairsense_colliding"]
+[connection signal="colliding" from="stairsense" to="." method="_on_stairsense_colliding"]

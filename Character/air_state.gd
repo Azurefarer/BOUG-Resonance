@@ -25,17 +25,23 @@ func state_process(delta : float):
 	
 	velocity[1] -= character.GRAVITY/32
 		
-	if Input.is_action_just_released("left") or Input.is_action_just_released("right"):
-		velocity[0] = 0
-		
-	if Input.is_action_just_released("down") or Input.is_action_just_released("up"):
-		velocity[2] = 0
-		
+#	if Input.is_action_just_released("left") or Input.is_action_just_released("right"):
+#		velocity[0] = 0
+#
+#	if Input.is_action_just_released("down") or Input.is_action_just_released("up"):
+#		velocity[2] = 0
+#
 	var input_direction : Vector3 = input_dir()
 	
 	if input_direction != Vector3.ZERO:
 		input_direction = input_direction.normalized()
 		$"../../Pivot".look_at(pos + input_direction, Vector3.UP)
+		
+	if input_direction.dot(Vector3.RIGHT) == 1 or input_direction.dot(Vector3.LEFT) == 1 or input_direction == Vector3.ZERO:
+		velocity[2] = velocity[2] * .00001
+		
+	if input_direction.dot(Vector3.FORWARD) == 1 or input_direction.dot(Vector3.BACK) == 1 or input_direction == Vector3.ZERO:
+		velocity[0] = velocity[0] * .00001
 	
 	velocity += Vector3(
 			input_direction[0] * RUN_ACC,
@@ -54,8 +60,8 @@ func state_process(delta : float):
 				input_direction[2] * WALK_ACC
 			)
 		velocity = velocity.clamp(
-				Vector3(-2 * WALK_SPEED, 0, -WALK_SPEED),
-				Vector3(2 * WALK_SPEED, 0, WALK_SPEED)
+				Vector3(-2 * WALK_SPEED, -100, -WALK_SPEED),
+				Vector3(2 * WALK_SPEED, 100, WALK_SPEED)
 			)
 		
 	if character.is_on_floor():

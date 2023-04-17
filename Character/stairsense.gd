@@ -1,13 +1,16 @@
 extends RayCast3D
 
-signal colliding(point : Object)
+signal colliding(point : Vector3)
+
+
+func _ready() -> void:
+	enabled = false
 
 func _physics_process(delta: float) -> void:
-#	print(position)
-	print(target_position)
+
 	if is_colliding():
 		print("collider works")
-		emit_signal("colliding", get_collider())
-		print(get_collider())
+		emit_signal("colliding", get_collision_point())
+
 
 

@@ -36,9 +36,9 @@ func _physics_process(delta : float):
 
 	velocity = velocity * iso_trans
 	velocity = velocity * cam_rot_trans
+	point_stair_sensor()
 	move_and_slide()
 	update_anim()
-	point_stair_sensor()
 	velocity = iso_trans * velocity
 	velocity = cam_rot_trans * velocity
 
@@ -61,8 +61,18 @@ func update_facing_direction() -> void:
 	
 	
 func point_stair_sensor() -> void:
-	var target_pos = velocity.normalized()
-	$Pivot/stairsense.target_position = target_pos * 2
+	$stairsense.target_position = Vector3.ZERO
+	var target_pos = velocity.normalized() * Vector3(1, 0, 1)
+	print("velocity: " + str(velocity) + "target_pos: " + str(target_pos))
+	if target_pos != Vector3.ZERO:
+		$stairsense.enabled = true
+		$stairsense.target_position = target_pos
+		print($stairsense.target_position)
+	else:
+		print(target_pos)
+		$stairsense.enabled = false
+
+
 	
 	###
 	# Signals
@@ -76,8 +86,13 @@ func _on_node_3d_cam_swivel(direction) -> void:
 
 
 
-func _on_stairsense_colliding(point) -> void:
-	pass
+func _on_stairsense_colliding(point : Vector3) -> void:
+	print(point)
+	var local_grid_pos = get_node("../DevMap/GridMap").to_local(point)
+	print(local_grid_pos)
+	var grid_pos = get_node("../DevMap/GridMap").local_to_map(local_grid_pos)
+	print(grid_pos)
+	print(get_node("../DevMap/GridMap").get_cell_item(grid_pos))
 	
 	
 	
