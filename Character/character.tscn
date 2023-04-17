@@ -177,9 +177,7 @@ graph_offset = Vector2(-205, -22)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2y7e1"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
-floor_block_on_wall = false
-floor_snap_length = 1.0
+[node name="CharacterBody3D" type="RigidBody3D"]
 script = ExtResource("1_vmsf1")
 
 [node name="Shadow" type="Sprite3D" parent="."]

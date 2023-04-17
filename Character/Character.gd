@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends RigidBody3D
 
 ## 157 pixels per second^2 ~~ 9.8 meters per second^2
 const GRAVITY = 19.6
@@ -34,13 +34,11 @@ func _ready():
 
 func _physics_process(delta : float):
 
-	velocity = velocity * iso_trans
-	velocity = velocity * cam_rot_trans
+
 	point_stair_sensor()
-	move_and_slide()
+	move_and_collide(Vector3(0, 0, 0))
 	update_anim()
-	velocity = iso_trans * velocity
-	velocity = cam_rot_trans * velocity
+
 
 	move_shadow()
 
