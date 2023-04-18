@@ -6,7 +6,7 @@ class_name State
 @export var grounded := true as bool
 @export var in_bounds := true as bool
 
-var character : CharacterBody3D
+var character : RigidBody3D
 var next_state : State
 
 

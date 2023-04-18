@@ -16,7 +16,7 @@ func on_exit():
 
 
 func state_process(delta : float):
-	var velocity := character.velocity as Vector3
+	var velocity := character.linear_velocity as Vector3
 	var RUN_SPEED := character.RUN_SPEED as int
 	var RUN_ACC := character.RUN_ACC as int
 	var WALK_SPEED := character.WALK_SPEED as int
@@ -64,10 +64,10 @@ func state_process(delta : float):
 				Vector3(2 * WALK_SPEED, 100, WALK_SPEED)
 			)
 		
-	if character.is_on_floor():
+	if character.get_contact_count():
 		land()
 	
-	character.velocity = velocity
+	character.linear_velocity = velocity
 
 
 func input_dir() -> Vector3:

@@ -12,9 +12,8 @@
 [ext_resource type="Script" path="res://Character/wave_like.gd" id="9_g3ep8"]
 [ext_resource type="Script" path="res://Character/debug_label.gd" id="10_yo5ku"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x10ph"]
-radius = 0.422798
-height = 1.38051
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrlw0"]
+size = Vector3(1, 1.2, 1)
 
 [sub_resource type="Animation" id="Animation_q4fsu"]
 length = 0.001
@@ -178,6 +177,7 @@ graph_offset = Vector2(-205, -22)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2y7e1"]
 
 [node name="CharacterBody3D" type="RigidBody3D"]
+custom_integrator = true
 script = ExtResource("1_vmsf1")
 
 [node name="Shadow" type="Sprite3D" parent="."]
@@ -189,7 +189,7 @@ script = ExtResource("3_doilj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.055094, 0)
-shape = SubResource("CapsuleShape3D_x10ph")
+shape = SubResource("BoxShape3D_rrlw0")
 
 [node name="ShadowPoint" type="RayCast3D" parent="."]
 exclude_parent = false
@@ -212,10 +212,8 @@ texture_filter = 0
 texture = ExtResource("4_pmmb1")
 hframes = 8
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
+[node name="CharacterStateMachine" type="Node" parent="."]
 script = ExtResource("3_2v7su")
-character = NodePath("..")
-current_state = NodePath("Ground")
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("4_77u4l")

@@ -11,7 +11,7 @@ func on_enter():
 	pass
 
 func state_process(delta : float):
-	var velocity := character.velocity as Vector3
+	var velocity := character.linear_velocity as Vector3
 	var RUN_SPEED := character.RUN_SPEED as float
 	var RUN_ACC := character.RUN_ACC as float
 	var WALK_SPEED := character.WALK_SPEED as float
@@ -22,8 +22,8 @@ func state_process(delta : float):
 		jump()
 		return
 	
-	if !character.is_on_floor():
-		next_state = air_state
+#	if !character.is_on_floor():
+#		next_state = air_state
 	
 #	if Input.is_action_just_released("left") or Input.is_action_just_released("right"):
 #		velocity[0] = 0
@@ -64,7 +64,7 @@ func state_process(delta : float):
 				Vector3(WALK_SPEED, 100, WALK_SPEED)
 			)
 			
-	character.velocity = velocity
+	character.linear_velocity = velocity
 
 
 func input_dir() -> Vector3:
@@ -85,7 +85,7 @@ func state_input(event : InputEvent):
 	pass
 
 func jump():
-	character.velocity.y += jump_velocity
+	character.linear_velocity.y += jump_velocity
 	next_state = air_state
 	print("works")
 	
