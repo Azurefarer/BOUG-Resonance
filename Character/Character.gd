@@ -45,7 +45,27 @@ func _integrate_forces(state):
 #	if Input.is_action_pressed("ui_left"):
 #		rotation_direction -= 1
 #	state.apply_torque(rotation_direction * torque)
-	state.apply_central_impulse(Vector3(0, -0.98, 0))
+#	state.apply_central_impulse(Vector3(0, -0.98, 0))
+#
+#	var input_direction : Vector3
+#	if Input.is_action_pressed("left"):
+#		input_direction.x -= 1
+#	if Input.is_action_pressed("right"):
+#		input_direction.x += 1
+#	if Input.is_action_pressed("up"):
+#		input_direction.z -= 1
+#	if Input.is_action_pressed("down"):
+#		input_direction.z += 1
+#	if Input.is_action_pressed("jump"):
+#		input_direction.y += 5
+#
+#	state.apply_impulse(input_direction)
+#	state.integrate_forces()
+	pass
+	
+
+func _physics_process(delta : float):
+	apply_central_impulse(Vector3(0, -0.98, 0))
 
 	var input_direction : Vector3
 	if Input.is_action_pressed("left"):
@@ -59,12 +79,7 @@ func _integrate_forces(state):
 	if Input.is_action_pressed("jump"):
 		input_direction.y += 5
 
-	state.apply_impulse(input_direction)
-#	state.integrate_forces()
-	pass
-	
-
-func _physics_process(delta : float):
+	apply_impulse(input_direction * iso_trans)
 	pass
 	
 #	point_stair_sensor()
